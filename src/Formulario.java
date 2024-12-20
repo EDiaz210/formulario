@@ -7,28 +7,34 @@ public class Formulario {
     private JButton agregarClientesButton;
     private JButton salirButton;
     public JPanel menu;
+    private Principal principal;
 
-    public Formulario() {
+    public Formulario(Principal principal) {
+        this.principal = principal;
+
+        System.out.println("Formulario - Instancia de Principal: " + principal);
+
         agregarClientesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
                 frame.setSize(350,300);
-                frame.setContentPane(new Agregar().agregarClientes);
-                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame.setContentPane(new Agregar(principal).agregarClientes);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
                 ((JFrame) SwingUtilities.getWindowAncestor(salirButton)).dispose();
 
 
             }
         });
+
         mostrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
                 frame.setSize(350,300);
-                frame.setContentPane(new Mostrar().mostrarClientes);
-                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame.setContentPane(new Mostrar(principal).mostrar);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
                 ((JFrame) SwingUtilities.getWindowAncestor(salirButton)).dispose();
 
